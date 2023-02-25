@@ -1,15 +1,51 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
-
+  
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :"名前" %>
+    <%= f.label :"(姓)" %>
+    <%= f.text_field :last_name,autofocus: true, placeholder:"田中" %>
+    <%= f.label :"(名)" %>
+    <%= f.text_field :first_name,placeholder:"太郎" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"ふりがな" %>
+    <%= f.label :"(せい)" %>
+    <%= f.text_field :last_name_kana,placeholder:"たなか" %>
+    <%= f.label :"(めい)" %>
+    <%= f.text_field :first_name_kana,placeholder:"たろう" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"自己紹介文" %>
+    <%= f.text_area :production,placeholder:"自己紹介文を書いてみましょう(この欄は空白でも問題ありません)。" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"郵便番号(ハイフンなし)" %>
+    <%= f.text_field :postal_code,placeholder:"0000000" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"住所" %>
+    <%= f.text_field :address,placeholder:"東京都渋谷区神山町0-0" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :"電話番号(ハイフンなし)" %>
+    <%= f.text_field :telephone_number,placeholder:"00000000000" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :"メールアドレス" %><br />
+    <%= f.email_field :email,placeholder:"tanaka@tarou.com",autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"パスワード" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -17,7 +53,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :"パスワード(確認用)" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 

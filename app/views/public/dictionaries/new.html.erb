@@ -1,1 +1,12 @@
 <h1>辞書の作成</h1>
+<%= form_with model:@dictionary,url:dictionaries_path,method: :post do |f| %>
+  <%= image_tag "no_image.jpg",:size => "300x450" %><br>
+  <%= f.file_field :image,accept:"image/*" %><br>
+  <%= f.label :"タイトル" %>
+  <%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true %><br>
+  <%= f.label :"タグ" %><br>
+  <%= f.label :"概要" %>
+  <%= f.text_area :summery,placeholder:"概要を入力" %><br>
+  <%= f.label :"公開範囲" %><br>
+  <%= f.submit "辞書を作成",class:"btn btn-sm btn-success" %>
+<% end %>
