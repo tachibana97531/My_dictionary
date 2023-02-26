@@ -1,5 +1,6 @@
 class Public::DictionariesController < ApplicationController
   def new
+    @dictionary = Dictionary.new
   end
 
   def create
@@ -15,6 +16,7 @@ class Public::DictionariesController < ApplicationController
   end
 
   def index
+    @dictionaries = Dictionary.page(params[:page]).per(8)
     @tags = Tag.all
   end
 
