@@ -1,6 +1,7 @@
 class Public::DictionariesController < ApplicationController
   def new
     @dictionary = Dictionary.new
+    @tag_list = @dictionary.tags.pluck(:tag_name).join(",")
   end
 
   def create
@@ -31,12 +32,12 @@ class Public::DictionariesController < ApplicationController
 
   def destroy
   end
-  
-  
+
+
   private
-  
+
   def dictionary_params
     params.require(:dictionary).permit(:title,:summery,:post_status)
   end
-  
+
 end

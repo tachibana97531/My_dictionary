@@ -4,7 +4,8 @@
   <%= f.file_field :image,accept:"image/*" %><br>
   <%= f.label :"タイトル" %>
   <%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true %><br>
-  <%= f.label :"タグ" %><br>
+  <%= f.label :"タグ" %>
+  <%= f.text_field :tag_name,value:@tag_list %><br>
   <%= f.label :"概要" %>
   <%= f.text_area :summery,placeholder:"概要を入力" %><br>
   <%= f.label :"公開範囲" %><br>
