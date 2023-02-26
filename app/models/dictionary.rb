@@ -6,9 +6,9 @@ class Dictionary < ApplicationRecord
   has_many:tag_posts,dependent: :destroy
   has_many:tags,through: :tag_posts,dependent: :destroy
   has_many:details,dependent: :destroy
-  
-  enum post_status:[private:0,open:1]
-  
+
+  enum post_status: {closing:0,opening:1}
+
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join("no_image.jpg")
@@ -16,8 +16,8 @@ class Dictionary < ApplicationRecord
     end
     image.variant(resize_to_limit:[width,height]).processed
   end
-  
-  def save_tag 
+
+  def save_tag
     self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
