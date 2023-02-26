@@ -1,0 +1,6 @@
+ja:
+  enums:
+      dictionary:
+               post_status:
+                        private: "非公開"
+                        open: "公開"

@@ -7,6 +7,8 @@ class Dictionary < ApplicationRecord
   has_many:tags,through: :tag_posts,dependent: :destroy
   has_many:details,dependent: :destroy
   
+  enum post_status:[private:0,open:1]
+  
   def get_image(width,height)
     unless image.attached?
       file_path = Rails.root.join("no_image.jpg")
