@@ -17,8 +17,8 @@ class Dictionary < ApplicationRecord
     image.variant(resize_to_limit:[width,height]).processed
   end
 
-  def save_tag
-    self.tags.pluck(:tag_name) unless self.tags.nil?
+  def save_tag(sent_tags)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
     old_tags.each do |old|

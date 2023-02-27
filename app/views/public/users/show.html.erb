@@ -6,3 +6,4 @@
 <p>電話番号</p><%= @user.telephone_number %>
 <p>郵便番号</p><%= @user.postal_code %>
 <p>住所</p><%= @user.address %>
+<%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>

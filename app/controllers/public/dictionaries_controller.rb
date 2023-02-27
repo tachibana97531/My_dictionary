@@ -9,7 +9,7 @@ class Public::DictionariesController < ApplicationController
     @dictionary.user_id = current_user.id
     tag_list = params[:dictionary][:tag_name].split(",")
     if @dictionary.save
-      @post.save_tag(tag_list)
+      @dictionary.save_tag(tag_list)
       redirect_to dictionary_path(@dictionary.id)
     else
       render new
