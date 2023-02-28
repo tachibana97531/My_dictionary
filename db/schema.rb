@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_27_123515) do
+ActiveRecord::Schema.define(version: 2023_02_22_233334) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -96,17 +96,15 @@ ActiveRecord::Schema.define(version: 2023_02_27_123515) do
   end
 
   create_table "tag_posts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "tag_id", null: false
     t.integer "dictionary_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tag_id"
+    t.index ["dictionary_id", "tag_id"], name: "index_tag_posts_on_dictionary_id_and_tag_id", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer "dictionary_id", null: false
     t.string "tag_name", null: false
-    t.string "tag_explanation", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
