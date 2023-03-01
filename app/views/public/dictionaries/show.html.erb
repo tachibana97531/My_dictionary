@@ -1,2 +1,8 @@
-<h1>Public::Dictionaries#show</h1>
-<p>Find me in app/views/public/dictionaries/show.html.erb</p>
+<hi>辞書詳細</hi>
+<%= image_tag @dictionary.get_image(300,450),:size => "300x450" %>
+<p>タイトル</p><%= @dictionary.title %>
+<p>概要</p><%= @dictionary.summery %>
+<p>タグ</p><%= @tag_list %>
+<p>投稿ステータス</p><%= @dictionary.post_status_i18n %>
+<%= link_to "編集",edit_dictionary_path(@dictionary.id),method: :get,class:"btn btn-sm btn-success" %>
+<%= link_to "削除",dictionary_path(@dictionary.id),method: :delete,class:"btn btn-sm btn-danger" %>

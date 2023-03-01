@@ -1,13 +1,14 @@
 <h1>辞書一覧</h1>
-<% @tags.each do |t| %>
-  <%= t.name %>
-  <%= "(#{t.dictionaries.count})" %>
+<% @tags.each do |tags| %>
+  <%= tags.tag_name %>
+  <%= "(#{tags.dictionaries.count})" %>
 <% end %>
 
-<% @dictionary.each do |f| %>
-  <%= image_tag f.get_image(100,100) %>
+<% @dictionaries.each do |f| %>
+  <%= image_tag f.get_image(100,100),:size => "100,150" %>
   <%= f.title %>
   <%= f.tags.map(&:tag_name).join(',') %>
   <%= f.summery %>
   <%= f.post_status %>
+  <%= link_to "詳細",dictionary_path(f.id),method: :get,class:"btn btn-sm btn-primary" %>
 <% end %>
