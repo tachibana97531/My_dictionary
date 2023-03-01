@@ -1,13 +1,13 @@
 class Public::DictionariesController < ApplicationController
   def new
     @dictionary = Dictionary.new
-    @tag_list = @dictionary.tags.pluck(:tag_name).join(',')
+    @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
   end
 
   def create
     @dictionary = Dictionary.new(dictionary_params)
     @dictionary.user_id = current_user.id
-    tag_list = params[:dictionary][:tag_name].split(',')
+    tag_list = params[:dictionary][:tag_name].split('、')
     if @dictionary.save
       @dictionary.save_tag(tag_list)
       redirect_to dictionary_path(@dictionary.id)
@@ -23,17 +23,17 @@ class Public::DictionariesController < ApplicationController
 
   def show
     @dictionary = Dictionary.find(params[:id])
-    @tag_list = @dictionary.tags.pluck(:tag_name).join(',')
+    @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
   end
 
   def edit
     @dictionary = Dictionary.find(params[:id])
-    @tag_list=@dictionary.tags.pluck(:tag_name).join(',')
+    @tag_list=@dictionary.tags.pluck(:tag_name).join('、')
   end
 
   def update
     @dictionary = Dictionary.find(params[:id])
-    tag_list = params[:dictionary][:tag_name].split(',')
+    tag_list = params[:dictionary][:tag_name].split('、')
     if @dictionary.update(dictionary_params)
       @old_relations = TagPost.where(dictionary_id:@dictionary.id)
       @old_relations.each do |relations|

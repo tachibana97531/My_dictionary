@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+.dictinary-image {
+  object-fit:cover
+}

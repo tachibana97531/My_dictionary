@@ -1,6 +1,6 @@
 <h1>辞書編集</h1>
 <%= form_with model:@dictionary,url:dictionary_path(@dictionary.id),method: :patch do |f| %>
-  <%= image_tag @dictionary.get_image(100,100),:size => "300,450" %>
+  <%= image_tag @dictionary.get_image(100,100),:size => "300,450",class:"dictionary-image" %>
   <%= f.file_field :image %>
   <%= f.text_field :title %>
   <%= f.text_field :tag_name,value:@tag_list %>
