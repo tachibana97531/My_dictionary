@@ -8,14 +8,17 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
-
   scope module:'public' do
     resources:users,only:[:index,:show,:edit,:update]
     get 'users/unsubscribe'
     get 'users/withdraw'
   end
   scope module:'public' do
-    resources:dictionaries
+    resources:dictionaries do
+      resource :favorites
+      resources:comments
+      resources:details
+    end
   end
 
 

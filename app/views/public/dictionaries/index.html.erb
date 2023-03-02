@@ -13,6 +13,7 @@
   <%= f.tags.map(&:tag_name).join('、') %>
   <%= f.summery %>
   <%= f.post_status_i18n %>
+  <%= link_to "#{f.comments.count}コメント",dictionary_path(f.id) %>
   <%= link_to "詳細",dictionary_path(f.id),method: :get,class:"btn btn-sm btn-primary" %>
 <% end %>
 </div>

@@ -24,6 +24,7 @@ class Public::DictionariesController < ApplicationController
   def show
     @dictionary = Dictionary.find(params[:id])
     @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
+    @comment = Comment.new
   end
 
   def edit

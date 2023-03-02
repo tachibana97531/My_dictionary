@@ -1,7 +1,7 @@
 class Dictionary < ApplicationRecord
   has_one_attached:image
   belongs_to:user
-  has_many:goods,dependent: :destroy
+  has_many:favorites,dependent: :destroy
   has_many:comments,dependent: :destroy
   has_many:tag_posts,dependent: :destroy
   has_many:tags,through: :tag_posts,dependent: :destroy
@@ -28,5 +28,9 @@ class Dictionary < ApplicationRecord
       new_dictionary_tag = Tag.find_or_create_by(tag_name:new)
       self.tags << new_dictionary_tag
     end
+  end
+
+  def favorited_by?(user)
+    favorites.exists?(user_id:user.id)
   end
 end
