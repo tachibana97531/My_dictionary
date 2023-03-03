@@ -1,0 +1,9 @@
+<h1>目次</h1>
+<% @details.each do |d| %>
+  <%= link_to dictionary_detail_path(:id => d.id,:dictionary_id => @dictionary.id) do %>
+    <%= d.word %>
+  <% end %>
+<% end %>
+<%= link_to new_dictionary_detail_path,class:"btn btn-x btn-lignt rounded-circle shadow-sm shadow-none" do %>
+  <%= "+" %>
+<% end %>

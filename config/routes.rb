@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
    devise_for :admin,skip:[:registrations,:passwords],controllers: {
     sessions: "admin/sessions"
   }
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+
+  get "search" => "searches#search"
 
   scope module:'public' do
     resources:users,only:[:index,:show,:edit,:update]
@@ -29,5 +32,7 @@ Rails.application.routes.draw do
   scope module:'public' do
     root to:'homes#top'
   end
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,12 @@
+<h2>検索</h2>
+
+<table class="table table-hover table-inverse">
+    <tbody>
+      <% @dictionaries.each do |dictionary| %>
+        <tr>
+          <td><%= dictionary.title %></td>
+          <td><%= dictionary.summery %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

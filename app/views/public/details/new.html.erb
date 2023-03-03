@@ -1,0 +1,7 @@
+<h1>単語作成</h1>
+<%= form_with model:[@dictionary,@detail],url:dictionary_details_path,method: :post,local:true do |f| %>
+  <%= f.text_field :word,placeholder:"単語を入力" %>
+  <%= f.text_field :read,placeholder:"読み方を入力" %>
+  <%= f.text_area :explanation,placeholder:"説明を入力" %>
+  <%= f.submit "作成",class:"btn btn-sm btn-success" %>
+<% end %>
