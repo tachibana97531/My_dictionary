@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   scope module:'public' do
     resources:dictionaries do
       resource :favorites
-      resources:comments
+      resources:comments,only:[:create,:destroy]
       resources:details
     end
   end
