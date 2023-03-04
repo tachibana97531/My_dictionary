@@ -13,9 +13,11 @@
 
   <body>
     <header>
+      <%= link_to "戻る", :back %>
       <%= render partial:"layouts/search" %>
     </header>
     <main>
+      <%= flash[:notice] %>
       <%= yield %>
     </main>
     <footer>
