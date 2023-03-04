@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+          <th><p>タグ検索</p></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% tags.each do |tags| %>
+        <tr>
+            <td>
+              <%= link_to tags.tag_name,dictionaries_path(tag_id:tags.id),method: :get,class:"text-secondary" %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

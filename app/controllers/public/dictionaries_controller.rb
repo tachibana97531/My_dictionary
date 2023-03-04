@@ -19,6 +19,11 @@ class Public::DictionariesController < ApplicationController
   def index
     @dictionaries = Dictionary.page(params[:page]).per(8)
     @tags = Tag.all
+    if params[:tag_id].present?
+      @tag = Tag.find(params[:tag_id])
+      @dictionaries = @tag.dictionaries.page(params[:page]).per(8)
+      @tag_f = Tag.find(params[:tag_id])
+    end
   end
 
   def show

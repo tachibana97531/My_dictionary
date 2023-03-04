@@ -1,4 +1,9 @@
-<h1>辞書一覧</h1>
+ <% if params[:tag_id].present? %>
+        <h1>タグが<%= @tag_f.tag_name %>の辞書一覧(全<%= @dictionaries.count %>件)</h1>
+      <% else %>
+        <h1>辞書一覧(全<%= @dictionaries.count %>件)</h1>
+      <% end %>
+<%= render partial: "public/dictionaries/tag",locals: {tags:@tags} %>
 <div>
   <% @tags.each do |tags| %>
   <%= tags.tag_name %>
