@@ -3,6 +3,8 @@
   <%= link_to dictionary_detail_path(:id => d.id,:dictionary_id => @dictionary.id) do %>
     <%= d.word %>
   <% end %>
+  <%= link_to "編集",edit_dictionary_detail_path(@dictionary.id,d.id),method: :get,class:"btn btn-sm btn-success" %>
+  <%= link_to "削除",dictionary_detail_path(@dictionary.id,d.id),method: :delete,class:"btn btn-sm btn-danger","data-confirm"=>"本当に削除しますか？" %>
 <% end %>
 <%= link_to new_dictionary_detail_path,class:"btn btn-x btn-lignt rounded-circle shadow-sm shadow-none" do %>
   <%= "+" %>

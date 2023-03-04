@@ -2,3 +2,6 @@
 <%= @detail.word %>
 <%= @detail.read %>
 <%= @detail.explanation %>
+<%= link_to "編集",edit_dictionary_detail_path(@dictionary.id,@detail.id),method: :get,class:"btn btn-sm btn-primary" %>
+<%= link_to "削除",dictionary_detail_path(@dictionary.id,@detail.id),method: :delete,class:"btn btn-sm btn-danger","data-confirm"=>"本当に削除しますか？" %>
+<%= link_to "目次へ",dictionary_details_path(@dictionary.id),method: :get,class:"btn btn-sm btn-primary" %>
