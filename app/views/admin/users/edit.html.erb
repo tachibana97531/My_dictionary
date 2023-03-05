@@ -1,0 +1,16 @@
+<h1>ユーザープロフィール編集</h1>
+<%= form_with model:@user,url:admin_user_path(@user.id),method: :patch,local:true do |user| %>
+  <p>名前</p><%= user.text_field:last_name,placeholder:"田中" %><%= user.text_field:first_name,placeholder:"太郎" %>
+  <p>ふりがな</p><%= user.text_field:last_name_kana,placeholder:"タナカ" %><%= user.text_field:userirst_name_kana,placeholder:"タロウ" %>
+  <p>自己紹介</p><%= user.text_area:production,placeholder:"自己紹介文を書いてみましょう(この欄は空白でも問題ありません)。" %>
+  <p>メールアドレス</p><%= user.text_field:email,placeholder:"tanaka@tarou.com" %>
+  <p>電話番号(ハイフンなし)</p><%= user.text_field:telephone_number,placeholder:"00000000000" %>
+  <p>郵便番号(ハイフンなし)</p><%= user.text_field:postal_code,placeholder:"0000000" %>
+  <p>住所</p><%= user.text_field:address,placeholder:"東京都渋谷区神山町〇-〇" %>
+  <p>退会ステータス</p>
+  <%= user.radio_button:is_deleted, :false %>
+  <%= user.label:is_deleted, :"有効" %>
+  <%= user.radio_button:is_deleted, :true %>
+  <%= user.label:is_deleted, :"退会" %>
+  <%= user.submit "変更を保存",class:"btn btn-sm btn-success" %>
+<% end %>

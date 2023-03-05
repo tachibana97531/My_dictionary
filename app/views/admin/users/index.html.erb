@@ -1,0 +1,15 @@
+<h1>ユーザー一覧</h1>
+<% @users.each do |user| %>
+   <%= user.id %>
+   <%= link_to admin_user_path(user.id) do %>
+     <%= user.last_name %>
+     <%= user.first_name %>
+   <% end %>
+   <%= user.email %>
+   <% if user.is_deleted == false %>
+     <%= "有効" %>
+   <% else %>
+     <%= "退会" %>
+   <% end %>
+   <%= user.created_at.strftime("%Y/%m/%d") %>
+<% end %>

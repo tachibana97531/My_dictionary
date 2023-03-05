@@ -33,18 +33,8 @@ class Dictionary < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id:user.id)
   end
-  
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @dictionary = Dictionary.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @dictionary = Dictionary.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @dictionary = Dictionary.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
+
+  def self.looks(word)
       @dictionary = Dictionary.where("title LIKE?","%#{word}%")
-    else
-      @dictionary = Dictionary.all
-    end
   end
 end

@@ -5,15 +5,78 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/3fdee408bb.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <header>
-      <%= link_to "戻る", :back %>
+       <%= link_to "<<戻る", :back %>
+       <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if request.fullpath.include? "/admin" %>
+                <% if admin_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to admin_users_path,method: :get do %>
+                      <span class="fa-sharp fa-solid fa-users fa-2x"></span><p>ユーザー一覧</p>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to admin_comments_path,method: :get do %>
+                      <span class="fa-solid fa-comments fa-2x"></span><p>コメント一覧</p>
+                    <% end %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to destroy_admin_session_path,method: :delete do %>
+                      <span class="fa-solid fa-right-from-bracket fa-2x"></span><p>ログアウト</p>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to new_admin_session_path,method: :get do %>
+                      <span class="fa-solid fa-right-to-bracket fa-2x"></span><p>ログイン</p>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% elsif user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to user_path(current_user.id),method: :get do %>
+                    <span class="fa-solid fa-user fa-2x"></span><p>プロフィール</p>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to dictionaries_path,method: :get do %>
+                    <span class="fa-solid fa-books fa-2x"></span><p>辞書一覧</p>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_user_session_path,method: :delete do %>
+                    <span class="fa-solid fa-right-from-bracket fa-2x"></span><p>ログアウト</p>
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to new_user_registration_path,method: :get do %>
+                    <span class="fa-solid fa-user-plus fa-2x"></span><p>新規登録</p>
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to new_user_session_path,method: :get do %>
+                    <span class="fa-solid fa-right-to-bracket fa-2x"></span><p>ログイン</p>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
       <%= render partial:"layouts/search" %>
     </header>
     <main>
