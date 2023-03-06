@@ -28,6 +28,14 @@ class Public::DictionariesController < ApplicationController
 
   def show
     @dictionary = Dictionary.find(params[:id])
+    if @dictionary.post_status = "closing"
+      if @dictionary.user != current_user
+      flash[:notice] = "この辞書は現在非公開となっています。"
+      redirect_to dictionaries_path
+      else
+      
+      end
+    end
     @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
     @comment = Comment.new
   end

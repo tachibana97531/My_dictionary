@@ -39,7 +39,7 @@
       </div>
       <div>
         <%= form_with model:[@dictionary,@comment] do |f| %>
-          <%= f.text_area :comment_contents,rows: "5",placeholder:"コメントをここに" %>
+          <%= f.text_area :comment_contents,placeholder:"コメントをここに" %>
           <%= f.submit "送信する",class:"btn btn-sm btn-success" %>
         <% end %>
       </div>

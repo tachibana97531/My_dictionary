@@ -1,17 +1,24 @@
-<h1>辞書の作成</h1>
-<%= form_with model:@dictionary,url:dictionaries_path,method: :post,local:true do |f| %>
-  <%= image_tag "no_image.jpg",:size => "300x450" %><br>
-  <%= f.file_field :image,accept:"image/*" %><br>
-  <%= f.label :"タイトル" %>
-  <%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true %><br>
-  <%= f.label :"タグ" %>
-  <%= f.text_field :tag_name,value:@tag_list %><br>
-  <%= f.label :"概要" %>
-  <%= f.text_area :summery,placeholder:"概要を入力" %><br>
-  <%= f.label :"公開範囲" %><br>
-  <%= f.radio_button :post_status,Dictionary.post_statuses.key(1) %>
-  <%= f.label :post_status_opening,Dictionary.post_statuses_i18n[:opening] %>
-  <%= f.radio_button :post_status,Dictionary.post_statuses.key(0) %>
-  <%= f.label :post_status_closing,Dictionary.post_statuses_i18n[:closing] %><br>
-  <%= f.submit "辞書を作成",class:"btn btn-sm btn-success" %>
-<% end %>
+<div class="container-fluid">
+  <%= form_with model:@dictionary,url:dictionaries_path,method: :post,local:true,class:"row" do |f| %>
+    <h1 class="col-md-12 text-center">辞書の作成</h1>
+    <div class="col-md-4">
+      <%= image_tag "no_image.jpg",:size => "300x450" %>
+      <%= f.file_field :image,accept:"image/*" %>
+    </div>
+    <div class="col-md-8">
+      <dl>
+        <dt><%= f.label :"タイトル" %></dt><dd><%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true %></dd>
+        <dt><%= f.label :"タグ" %></dt><dd><%= f.text_field :tag_name,value:@tag_list %></dd>
+        <dt><%= f.label :"概要" %></dt><dd><%= f.text_area :summery,placeholder:"概要を入力" %></dd>
+        <dt><%= f.label :"公開範囲" %></dt>
+        <dd>
+          <%= f.label :post_status_opening,Dictionary.post_statuses_i18n[:opening] %>
+          <%= f.radio_button :post_status,Dictionary.post_statuses.key(1) %>
+          <%= f.label :post_status_closing,Dictionary.post_statuses_i18n[:closing] %>
+          <%= f.radio_button :post_status,Dictionary.post_statuses.key(0) %>
+        </dd>
+      </dl>
+      <%= f.submit "辞書を作成",class:"btn btn-sm btn-success" %>
+    </div>
+  <% end %>
+</div>

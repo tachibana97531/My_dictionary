@@ -12,16 +12,33 @@
       <%= render partial: "public/dictionaries/tag",locals: {tags:@tags} %>
     </div>
     <div class="col-md-10">
-      <% @dictionaries.each do |f| %>
-      <%= image_tag f.get_image(100,100),:size => "100,150" %>
+      <% @dictionaries.each do |dictionary| %>
+      <%= image_tag dictionary.get_image(100,100),:size => "100,150" %>
         <dl>
-          <dt>タイトル</dt><dd><%= f.title %></dd>
-          <dt>タグ</dt><dd><%= f.tags.map(&:tag_name).join('、') %></dd>
-          <dt>概要</dt><dd><%= f.summery %></dd>
-          <dt>投稿ステータス</dt><dd><%= f.post_status_i18n %></dd>
-          <dt>コメント件数</dt><dd><%= link_to "#{f.comments.count}コメント",dictionary_path(f.id) %></dd>
+          <dt>タイトル</dt><dd><%= dictionary.title %></dd>
+          <dt>タグ</dt><dd><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
+          <dt>概要</dt><dd><%= dictionary.summery %></dd>
+          <dt>投稿ステータス</dt><dd><%= dictionary.post_status_i18n %></dd>
+          <%= link_to dictionary_comments_path(dictionary.id) do %>
+          <dt><%= "#{dictionary.comments.count}コメント" %></dt>
+          <% end %>
+          <dd>
+          <% if dictionary.favorited_by?(current_user) %>
+          <p>
+            <%= link_to dictionary_favorites_path(dictionary.id),method: :delete do |f| %>
+              ♥<%= dictionary.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to dictionary_favorites_path(dictionary.id),method: :post do |f| %>
+              ♡<%= dictionary.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% end %>
+          </dd>
         </dl>
-        <%= link_to "詳細",dictionary_path(f.id),method: :get,class:"btn btn-sm btn-primary" %>
+        <%= link_to "詳細",dictionary_path(dictionary.id),method: :get,class:"btn btn-sm btn-primary" %>
       <% end %>
     </div>
   </div>

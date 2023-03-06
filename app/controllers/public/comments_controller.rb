@@ -7,6 +7,11 @@ class Public::CommentsController < ApplicationController
     redirect_to dictionary_path(@dictionary)
   end
 
+  def index
+    @dictionary = Dictionary.find(params[:dictionary_id])
+    @comments = @dictionary.comments
+  end
+
   def destroy
     Comment.find(params[:id]).destroy
     redirect_to dictionary_path(params[:dictionary_id])

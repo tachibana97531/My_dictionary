@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   scope module:'public' do
     resources:dictionaries do
       resource :favorites
-      resources:comments,only:[:create,:destroy]
+      resources:comments,only:[:create,:index,:destroy]
       resources:details
     end
   end

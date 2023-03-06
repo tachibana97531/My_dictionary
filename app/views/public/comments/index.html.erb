@@ -1,0 +1,19 @@
+<div class="container-fluid max-container">
+  <div class="row">
+    <div class="col-md-12" >
+        <h1 class="text-center"><%= @dictionary.title %>に対するコメント(<%= @dictionary.comments.count %>件)</h1>
+        <% @comments.each do |comment| %>
+          <ul>
+            <li>
+              <%= comment.user.last_name %>
+              <%= comment.user.first_name %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_contents %>
+              <% if comment.user == current_user %>
+                <%= link_to "コメントを削除",dictionary_comment_path(comment.dictionary,comment),method: :delete,"data-confirm"=>"本当に削除しますか？",class:"btn btn-sm btn-danger" %>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+    </div>
+  </div>
+</div>
