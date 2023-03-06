@@ -4,7 +4,11 @@
     <tbody>
       <% @dictionaries.each do |dictionary| %>
         <tr>
-          <td><%= dictionary.title %></td>
+          <td>
+            <%= link_to dictionary_path(dictionary.id) do %>
+              <%= dictionary.title %>
+            <% end %>
+          </td>
           <td><%= dictionary.summery %></td>
         </tr>
       <% end %>

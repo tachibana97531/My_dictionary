@@ -8,7 +8,7 @@
         <% tags.each do |tags| %>
         <tr>
             <td>
-              <%= link_to tags.tag_name,dictionaries_path(tag_id:tags.id),method: :get,class:"text-secondary" %>
+              <%= link_to tags.tag_name,dictionaries_path(tag_id:tags.id),method: :get,class:"text-secondary" %><%= "(#{tags.dictionaries.count})" %>
             </td>
         </tr>
         <% end %>

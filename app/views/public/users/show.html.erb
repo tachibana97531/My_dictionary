@@ -1,10 +1,19 @@
-<h1>プロフィール</h1>
-<p>名前</p><%= @user.last_name %><%= @user.first_name %>
-<p>ふりがな</p><%= @user.last_name_kana %><%= @user.first_name_kana %>
-<p>自己紹介</p><%= @user.production %>
-<p>メールアドレス</p><%= @user.email %>
-<p>電話番号</p><%= @user.telephone_number %>
-<p>郵便番号</p><%= @user.postal_code %>
-<p>住所</p><%= @user.address %>
-<%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>
-<p><%= link_to "いいねした辞書一覧",favorites_user_path(@user.id) %></p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <h1>プロフィール</h1>
+      <dl>
+        <dt>名前<dt><dd><%= @user.last_name %><%= @user.first_name %></dd>
+        <dt>ふりがな</dt><dd><%= @user.last_name_kana %><%= @user.first_name_kana %></dd>
+        <dt>自己紹介</dt><dd><%= @user.production %></dd>
+        <dt>メールアドレス</dt><dd><%= @user.email %></dd>
+        <dt>電話番号</dt><dd><%= @user.telephone_number %></dd>
+        <dt>郵便番号</dt><dd><%= @user.postal_code %></dd>
+        <dt>住所</dt><dd><%= @user.address %></dd>
+        <%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>
+        <dt><%= link_to "いいねした辞書一覧",favorites_user_path(@user.id) %></dt>
+      </dl>
+    </div>
+  </div>
+</div>
+

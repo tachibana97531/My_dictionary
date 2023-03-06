@@ -1,39 +1,50 @@
-<hi>辞書詳細</hi>
-<%= image_tag @dictionary.get_image(300,450),:size => "300x450",class:"dictionary-image" %>
-<p>タイトル</p><%= @dictionary.title %>
-<p>概要</p><%= @dictionary.summery %>
-<p>タグ</p><%= @tag_list %>
-<p>投稿ステータス</p><%= @dictionary.post_status_i18n %>
-<% if @dictionary.favorited_by?(current_user) %>
-  <p>
-    <%= link_to dictionary_favorites_path(@dictionary),method: :delete do |f| %>
-      ♥<%= @dictionary.favorites.count %> いいね
-    <% end %>
-  </p>
-  <% else %>
-  <p>
-    <%= link_to dictionary_favorites_path(@dictionary),method: :post do |f| %>
-      ♡<%= @dictionary.favorites.count %> いいね
-    <% end %>
-  </p>
-<% end %>
-<%= link_to "閲覧",dictionary_details_path(@dictionary.id),method: :get,class:"btn btn-sm btn-primary" %>
-<%= link_to "編集",edit_dictionary_path(@dictionary.id),method: :get,class:"btn btn-sm btn-success" %>
-<%= link_to "削除",dictionary_path(@dictionary.id),method: :delete,class:"btn btn-sm btn-danger" %>
-<%= link_to "辞書一覧へ",dictionaries_path,method: :get,class:"btn btn-sm btn-primary" %>
-<div>
-  <p>コメント件数<%= @dictionary.comments.count %></p>
-  <% @dictionary.comments.each do |comment| %>
-    <%= comment.user.last_name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_contents %>
-    <% if comment.user == current_user %>
-      <%= link_to "コメントを削除",dictionary_comment_path(comment.dictionary,comment),method: :delete,"data-confirm"=>"本当に削除しますか？",class:"btn btn-sm btn-danger" %>
-    <% end %>
-  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag @dictionary.get_image(300,450),:size => "300x450",class:"dictionary-image" %>
+    </div>
+    <div class="col-md-8">
+      <dl>
+        <dt>タイトル</dt><dd><%= @dictionary.title %></dd>
+        <dt>概要</dt><dd><%= @dictionary.summery %></dd>
+        <dt>タグ</dt><dd><%= @tag_list %></dd>
+        <dt>投稿ステータス</dt><dd><%= @dictionary.post_status_i18n %></dd>
+        <% if @dictionary.favorited_by?(current_user) %>
+          <p>
+            <%= link_to dictionary_favorites_path(@dictionary),method: :delete do |f| %>
+              ♥<%= @dictionary.favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to dictionary_favorites_path(@dictionary),method: :post do |f| %>
+              ♡<%= @dictionary.favorites.count %> いいね
+            <% end %>
+          </p>
+        </dl>
+      <% end %>
+      <%= link_to "閲覧",dictionary_details_path(@dictionary.id),method: :get,class:"btn btn-sm btn-primary" %>
+      <%= link_to "編集",edit_dictionary_path(@dictionary.id),method: :get,class:"btn btn-sm btn-success" %>
+      <%= link_to "削除",dictionary_path(@dictionary.id),method: :delete,class:"btn btn-sm btn-danger" %>
+      <%= link_to "辞書一覧へ",dictionaries_path,method: :get,class:"btn btn-sm btn-primary" %>
+      <div>
+        <p>コメント件数<%= @dictionary.comments.count %></p>
+        <% @dictionary.comments.each do |comment| %>
+          <%= comment.user.last_name %>
+          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_contents %>
+          <% if comment.user == current_user %>
+            <%= link_to "コメントを削除",dictionary_comment_path(comment.dictionary,comment),method: :delete,"data-confirm"=>"本当に削除しますか？",class:"btn btn-sm btn-danger" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model:[@dictionary,@comment] do |f| %>
+          <%= f.text_area :comment_contents,rows: "5",placeholder:"コメントをここに" %>
+          <%= f.submit "送信する",class:"btn btn-sm btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-  <%= form_with model:[@dictionary,@comment] do |f| %>
-    <%= f.text_area :comment_contents,rows: "5",placeholder:"コメントをここに" %>
-    <%= f.submit "送信する",class:"btn btn-sm btn-success" %>
-  <% end %>
-</div>
+
+

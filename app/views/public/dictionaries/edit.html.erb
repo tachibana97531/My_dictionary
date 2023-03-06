@@ -1,9 +1,25 @@
 <h1>辞書編集</h1>
-<%= form_with model:@dictionary,url:dictionary_path(@dictionary.id),method: :patch do |f| %>
-  <%= image_tag @dictionary.get_image(100,100),:size => "300,450",class:"dictionary-image" %>
-  <%= f.file_field :image %>
-  <%= f.text_field :title %>
-  <%= f.text_field :tag_name,value:@tag_list %>
-  <%= f.text_area :summery %>
-  <%= f.submit "更新",class:"btn btn-sm btn-success" %>
-<% end %>
+<div class="container-fluid">
+    <%= form_with model:@dictionary,url:dictionary_path(@dictionary.id),method: :patch,class:"row" do |dictionary| %>
+      <div class="col-md-4">
+        <%= image_tag @dictionary.get_image(100,100),:size => "300x450",class:"dictionary-image" %>
+        <%= dictionary.file_field :image %>
+      </div>
+      <div class="col-md-8">
+        <dl>
+          <dt>タイトル</dt><dd><%= dictionary.text_field :title %></dd>
+          <dt>タグ</dt><dd><%= dictionary.text_field :tag_name,value:@tag_list %></dd>
+          <dt>概要</dt><dd><%= dictionary.text_area :summery %></dd>
+          <dt>投稿ステータス</dt>
+          <dd>
+            <%= dictionary.radio_button :post_status,Dictionary.post_statuses.key(1) %>
+            <%= dictionary.label :post_status_opening,Dictionary.post_statuses_i18n[:opening] %>
+            <%= dictionary.radio_button :post_status,Dictionary.post_statuses.key(0) %>
+            <%= dictionary.label :post_status_closing,Dictionary.post_statuses_i18n[:closing] %>
+          </dd>
+        </dl>
+        <%= dictionary.submit "更新",class:"btn btn-sm btn-success" %>
+      </div>
+    <% end %>
+</div>
+

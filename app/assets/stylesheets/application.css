@@ -16,3 +16,8 @@
 .dictinary-image {
   object-fit:cover
 }
+
+dl dt {
+     float:left;
+     clear:both;
+}

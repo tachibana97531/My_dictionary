@@ -1,24 +1,30 @@
- <% if params[:tag_id].present? %>
-        <h1>タグが<%= @tag_f.tag_name %>の辞書一覧(全<%= @dictionaries.count %>件)</h1>
-      <% else %>
-        <h1>辞書一覧(全<%= @dictionaries.count %>件)</h1>
-      <% end %>
-<%= render partial: "public/dictionaries/tag",locals: {tags:@tags} %>
-<div>
-  <% @tags.each do |tags| %>
-  <%= tags.tag_name %>
-  <%= "(#{tags.dictionaries.count})" %>
+<% if params[:tag_id].present? %>
+  <h1>タグが<%= @tag_f.tag_name %>の辞書一覧(全<%= @dictionaries.count %>件)</h1>
+<% else %>
+  <h1>辞書一覧(全<%= @dictionaries.count %>件)</h1>
 <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <%= render partial: "public/dictionaries/tag",locals: {tags:@tags} %>
+      <% @tags.each do |tags| %>
+        <%= tags.tag_name %>
+        <%= "(#{tags.dictionaries.count})" %>
+      <% end %>
+    </div>
+    <div class="col-md-10">
+      <% @dictionaries.each do |f| %>
+      <%= image_tag f.get_image(100,100),:size => "100,150" %>
+        <dl>
+          <dt>タイトル</dt><dd><%= f.title %></dd>
+          <dt>タグ</dt><dd><%= f.tags.map(&:tag_name).join('、') %></dd>
+          <dt>概要</dt><dd><%= f.summery %></dd>
+          <dt>投稿ステータス</dt><dd><%= f.post_status_i18n %></dd>
+          <dt>コメント件数</dt><dd><%= link_to "#{f.comments.count}コメント",dictionary_path(f.id) %></dd>
+        </dl>
+        <%= link_to "詳細",dictionary_path(f.id),method: :get,class:"btn btn-sm btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<div>
-  <% @dictionaries.each do |f| %>
-  <%= image_tag f.get_image(100,100),:size => "100,150" %>
-  <%= f.title %>
-  <%= f.tags.map(&:tag_name).join('、') %>
-  <%= f.summery %>
-  <%= f.post_status_i18n %>
-  <%= link_to "#{f.comments.count}コメント",dictionary_path(f.id) %>
-  <%= link_to "詳細",dictionary_path(f.id),method: :get,class:"btn btn-sm btn-primary" %>
-<% end %>
-</div>
