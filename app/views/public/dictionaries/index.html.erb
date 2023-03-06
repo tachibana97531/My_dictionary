@@ -1,16 +1,15 @@
-<% if params[:tag_id].present? %>
-  <h1>タグが<%= @tag_f.tag_name %>の辞書一覧(全<%= @dictionaries.count %>件)</h1>
-<% else %>
-  <h1>辞書一覧(全<%= @dictionaries.count %>件)</h1>
-<% end %>
-<div class="container-fluid">
+
+<div class="container-fluid max-container">
   <div class="row">
+    <div class="col-md-12 text-center">
+       <% if params[:tag_id].present? %>
+         <h1>タグが<%= @tag_f.tag_name %>の辞書一覧(全<%= @dictionaries.count %>件)</h1>
+       <% else %>
+         <h1>辞書一覧(全<%= @dictionaries.count %>件)</h1>
+       <% end %>
+    </div>
     <div class="col-md-2">
       <%= render partial: "public/dictionaries/tag",locals: {tags:@tags} %>
-      <% @tags.each do |tags| %>
-        <%= tags.tag_name %>
-        <%= "(#{tags.dictionaries.count})" %>
-      <% end %>
     </div>
     <div class="col-md-10">
       <% @dictionaries.each do |f| %>

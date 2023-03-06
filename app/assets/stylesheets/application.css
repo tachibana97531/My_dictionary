@@ -21,3 +21,30 @@ dl dt {
      float:left;
      clear:both;
 }
+
+.guest {
+  display:flex;
+  justify-content:flex-start;
+  text-align:end;
+}
+
+.max-container {
+  height:100vh;
+}
+
+.nav-link {
+  justify-content:center;
+  text-align:center;
+}
+
+.header-icon {
+  color:#000FFF;
+}
+
+.header-font {
+  color:#000FFF;
+}
+
+.search-box {
+  margin-right:auto;
+}
