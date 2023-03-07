@@ -1,7 +1,13 @@
-<h1>単語編集画面</h1>
-<%= form_with model:[@dictionary,@detail],url:dictionary_detail_path,method: :patch,local:true do |f| %>
-  <%= f.text_field :word,placeholder:"単語を入力" %>
-  <%= f.text_field :read,placeholder:"読み方を入力" %>
-  <%= f.text_area :explanation,placeholder:"説明を入力" %>
-  <%= f.submit "更新",class:"btn btn-sm btn-success" %>
-<% end %>
+<div class="container-fluid max-container">
+  <%= form_with model:[@dictionary,@detail],url:dictionary_detail_path,method: :patch,local:true,class:"row" do |f| %>
+    <h1 class="col-md-12">単語編集</h1>
+    <dl>
+      <dt>単語</dt><dd><%= f.text_field :word,placeholder:"単語を入力" %></dd>
+      <dt>読み方</dt><dd><%= f.text_field :read,placeholder:"読み方を入力" %></dd>
+      <dt>説明</dt><dd><%= f.text_area :explanation,placeholder:"説明を入力" %></dd>
+      <%= f.submit "更新",class:"btn btn-sm btn-success" %>
+    </dl>
+  <% end %>
+</div>
+
+

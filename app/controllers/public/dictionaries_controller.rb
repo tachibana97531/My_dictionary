@@ -1,4 +1,5 @@
 class Public::DictionariesController < ApplicationController
+  before_action :authenticate_user!, except: [:top]
   def new
     @dictionary = Dictionary.new
     @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
@@ -12,7 +13,7 @@ class Public::DictionariesController < ApplicationController
       @dictionary.save_tag(tag_list)
       redirect_to dictionary_path(@dictionary.id)
     else
-      render new
+      render :new
     end
   end
 
@@ -28,13 +29,9 @@ class Public::DictionariesController < ApplicationController
 
   def show
     @dictionary = Dictionary.find(params[:id])
-    if @dictionary.post_status = "closing"
-      if @dictionary.user != current_user
+    if @dictionary.post_status == "closing" && @dictionary.user != current_user
       flash[:notice] = "この辞書は現在非公開となっています。"
       redirect_to dictionaries_path
-      else
-      
-      end
     end
     @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
     @comment = Comment.new

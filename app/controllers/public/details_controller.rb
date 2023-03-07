@@ -1,4 +1,5 @@
 class Public::DetailsController < ApplicationController
+  before_action :authenticate_user!, except: [:top]
   def new
     @dictionary = Dictionary.find(params[:dictionary_id])
     @detail = Detail.new
@@ -8,8 +9,12 @@ class Public::DetailsController < ApplicationController
     @dictionary = Dictionary.find(params[:dictionary_id])
     @detail = Detail.new(detail_params)
     @detail.dictionary_id = @dictionary.id
-    @detail.save
-    redirect_to dictionary_details_path(@dictionary)
+    if @detail.save
+      flash[:notice] = "単語を作成しました。"
+      redirect_to dictionary_details_path(@dictionary)
+    else
+      render :new
+    end
   end
 
   def index

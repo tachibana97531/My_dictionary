@@ -1,6 +1,16 @@
 <div class="container-fluid">
   <%= form_with model:@dictionary,url:dictionaries_path,method: :post,local:true,class:"row" do |f| %>
     <h1 class="col-md-12 text-center">辞書の作成</h1>
+    <div class="col-md-12">
+      <% if @dictionary.errors.any? %>
+        <%= @dictionary.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @dictionary.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
     <div class="col-md-4">
       <%= image_tag "no_image.jpg",:size => "300x450" %>
       <%= f.file_field :image,accept:"image/*" %>

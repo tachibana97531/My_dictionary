@@ -8,6 +8,10 @@ class Dictionary < ApplicationRecord
   has_many:details,dependent: :destroy
 
   enum post_status: {closing:0,opening:1}
+  
+  validates :title,presence:true
+  validates :summery,presence:true
+  validates :post_status,presence:true
 
   def get_image(width, height)
   unless image.attached?

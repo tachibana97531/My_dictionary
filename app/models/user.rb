@@ -7,11 +7,21 @@ class User < ApplicationRecord
   has_many:dictionaries,dependent: :destroy
   has_many:favorites,dependent: :destroy
   has_many:comments,dependent: :destroy
-  
+
+  validates :last_name,presence:true
+  validates :first_name,presence:true
+  validates :last_name_kana,presence:true
+  validates :first_name_kana,presence:true
+  validates :email,presence:true
+  validates :telephone_number,presence:true
+  validates :postal_code,presence:true
+  validates :address,presence:true
+  validates :encrypted_password,presence:true
+
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
+
   def self.guest
    find_or_create_by!(email: 'guest@example.com') do |user|
      user.password = SecureRandom.urlsafe_base64

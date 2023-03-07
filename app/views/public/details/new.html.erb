@@ -1,6 +1,16 @@
-<h1>単語作成</h1>
 <div class="container-fluid">
   <%= form_with model:[@dictionary,@detail],url:dictionary_details_path,method: :post,local:true,class:"row" do |f| %>
+    <h1 class="col-md-12">単語作成</h1>
+    <div class="col-md-12">
+      <% if @detail.errors.any? %>
+        <%= @detail.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @detail.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
     <div class="col-md-12">
       <dl>
         <dt>単語</dt><dd><%= f.text_field :word,placeholder:"単語を入力" %></dd>

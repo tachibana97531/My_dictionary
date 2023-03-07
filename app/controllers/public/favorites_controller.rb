@@ -1,4 +1,5 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_user!, except: [:top]
   def create
     @dictionary = Dictionary.find(params[:dictionary_id])
     @favorite = current_user.favorites.new(dictionary_id:@dictionary.id)

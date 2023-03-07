@@ -4,3 +4,13 @@ ja:
                post_status:
                         closing: "非公開"
                         opening: "公開"
+
+  activerecord:
+             attributes:
+                      dictionary:
+                               title: "タイトル"
+                               summery: "概要"
+
+                      detail:
+                           word: "単語"
+                           explanation: "説明"

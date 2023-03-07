@@ -1,10 +1,15 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_user!, except: [:top]
   def create
     @dictionary = Dictionary.find(params[:dictionary_id])
     @comment = current_user.comments.new(comment_params)
     @comment.dictionary_id = @dictionary.id
-    @comment.save
-    redirect_to dictionary_path(@dictionary)
+    if @comment.save
+       flash[:notice] = "コメントを作成しました。"
+       redirect_to dictionary_path(@dictionary)
+    else
+       render :index
+    end
   end
 
   def index
