@@ -53,7 +53,7 @@ class Public::DictionariesController < ApplicationController
       @dictionary.save_tag(tag_list)
       redirect_to dictionary_path(@dictionary.id)
     else
-      render edit
+      render :edit
     end
   end
 

@@ -36,8 +36,11 @@ class Public::DetailsController < ApplicationController
     @dictionary = Dictionary.find(params[:dictionary_id])
     @detail = Detail.find(params[:id])
     @detail.dictionary_id = @dictionary.id
-    @detail.update(detail_params)
-    redirect_to dictionary_detail_path(@dictionary.id,@detail.id)
+    if @detail.update(detail_params)
+      redirect_to dictionary_detail_path(@dictionary.id,@detail.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

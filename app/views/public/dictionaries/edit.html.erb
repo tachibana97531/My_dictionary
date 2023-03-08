@@ -1,6 +1,15 @@
-<h1>辞書編集</h1>
 <div class="container-fluid">
     <%= form_with model:@dictionary,url:dictionary_path(@dictionary.id),method: :patch,class:"row" do |dictionary| %>
+      <div class="col-md-12">
+        <% if @dictionary.errors.any? %>
+          <%= @dictionary.errors.count %>件のエラーが発生しました。
+            <ul>
+              <% @dictionary.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        <% end %>
+      </div>
       <div class="col-md-4">
         <%= image_tag @dictionary.get_image(100,100),:size => "300x450",class:"dictionary-image" %>
         <%= dictionary.file_field :image %>

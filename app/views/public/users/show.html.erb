@@ -12,6 +12,12 @@
         <dt>住所</dt><dd><%= @user.address %></dd>
       </dl>
       <%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>
+      <% if @user.id == current_user.id %>
+      <h1>いいねした辞書一覧</h1>
+        <% @favorite_dictionaries.each do |dictionary| %>
+          <%= dictionary.title %>
+        <% end %>
+      <% end %>
       <%= link_to "いいねした辞書一覧",favorites_user_path(@user.id),class:"col-md-12" %>
     </div>
   </div>

@@ -1,6 +1,15 @@
 <div class="container-fluid max-container">
   <%= form_with model:[@dictionary,@detail],url:dictionary_detail_path,method: :patch,local:true,class:"row" do |f| %>
-    <h1 class="col-md-12">単語編集</h1>
+    <div class="col-md-12">
+      <% if @detail.errors.any? %>
+        <%= @detail.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @detail.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
     <dl>
       <dt>単語</dt><dd><%= f.text_field :word,placeholder:"単語を入力" %></dd>
       <dt>読み方</dt><dd><%= f.text_field :read,placeholder:"読み方を入力" %></dd>

@@ -5,6 +5,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:dictionary_id)
+    @favorite_dictionaries = Dictionary.find(favorites)
   end
 
   def edit
@@ -13,8 +15,11 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
@@ -25,12 +30,6 @@ class Public::UsersController < ApplicationController
     @user.update(is_deleted:true)
     reset_session
     redirect_to root_path
-  end
-
-  def favorites
-    @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:dictionary_id)
-    @favorite_dictionaries = Dictionary.find(favorites)
   end
 
 

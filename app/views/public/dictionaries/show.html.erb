@@ -15,18 +15,17 @@
               ♥<%= @dictionary.favorites.count %> いいね
             <% end %>
           </p>
-          <% else %>
+        <% else %>
           <p>
             <%= link_to dictionary_favorites_path(@dictionary),method: :post do |f| %>
               ♡<%= @dictionary.favorites.count %> いいね
             <% end %>
           </p>
-           <%= link_to dictionary_comments_path(@dictionary.id),method: :get do %>
-          <p>コメント件数<%= @dictionary.comments.count %></p>
         <% end %>
+           <%= link_to dictionary_comments_path(@dictionary.id),method: :get do %>
+           <p>コメント件数<%= @dictionary.comments.count %></p>
+           <% end %>
         </dl>
-      <% end %>
-
       <div class="border">
         <p>コメントの作成</p>
         <%= form_with model:[@dictionary,@comment] do |f| %>
@@ -42,7 +41,6 @@
         <li><%= link_to "辞書一覧へ",dictionaries_path,method: :get %></li>
         <% if @dictionary.user_id == current_user.id %>
           <li><%= link_to "辞書の編集",edit_dictionary_path(@dictionary.id),method: :get %></li>
-          <li><%= link_to "単語の編集",edit_dictionary_detail_path(:dictionary_id => @dictionary.id,:id => @dictionary.detail.id),method: :get %></li>
           <li><%= link_to "辞書を削除",dictionary_path(@dictionary.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %></li>
         <% end %>
       </ul>

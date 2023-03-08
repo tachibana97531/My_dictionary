@@ -2,6 +2,16 @@
   <%= form_with model:@user,url:user_path(@user.id),method: :patch,local:true,class:"row" do |f| %>
     <h1 class="col-md-12 text-center">プロフィール編集</h1>
     <div class="col-md-12">
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
+    <div class="col-md-12">
       <dl>
         <dt>名前</dt><dd><%= f.label :"(姓)" %>&emsp;&emsp;<%= f.text_field:last_name,placeholder:"田中",class:"name-box" %><%= f.label :"(名)" %>&emsp;&emsp;<%= f.text_field:first_name,placeholder:"太郎",class:"name-box" %></dd>
         <dt>ふりがな</dt><dd><%= f.label :"(せい)" %>&emsp;<%= f.text_field:last_name_kana,placeholder:"タナカ",class:"name-box" %><%= f.label :"(めい)" %>&emsp;<%= f.text_field:first_name_kana,placeholder:"タロウ",class:"name-box" %></dd>

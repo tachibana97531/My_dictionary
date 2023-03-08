@@ -1,18 +1,30 @@
-<h1>目次</h1>
-<div class="container-fluid">
+
+<div class="container-fluid max-container">
   <div class="row">
-    <div class="col-md-12">
+    <h1 class="col-md-12 text-center">目次</h1>
+    <div class="col-md-12 text-start">
       <% @details.each do |d| %>
-        <%= link_to dictionary_detail_path(:id => d.id,:dictionary_id => @dictionary.id) do %>
-          <%= d.word %>
+        <ul>
+          <li>
+            <%= link_to dictionary_detail_path(:id => d.id,:dictionary_id => @dictionary.id) do %>
+              <%= d.word %>
+            <% end %>
+            <% if @dictionary.user_id == current_user.id %>
+              <%= link_to "編集",edit_dictionary_detail_path(@dictionary.id,d.id),method: :get,class:"btn btn-sm btn-success" %>
+              <%= link_to "削除",dictionary_detail_path(@dictionary.id,d.id),method: :delete,class:"btn btn-sm btn-danger","data-confirm"=>"本当に削除しますか？" %>
+            <% end %>
+          </li>
+        </ul>
+
+      <% end %>
+    </div>
+    <div class="col-md-12 text-center">
+      <% if @dictionary.user_id == current_user.id %>
+        <%= link_to new_dictionary_detail_path,class:"btn btn-x btn-lignt rounded-circle shadow-sm shadow-none" do %>
+          <%= "+" %>
         <% end %>
-        <%= link_to "編集",edit_dictionary_detail_path(@dictionary.id,d.id),method: :get,class:"btn btn-sm btn-success" %>
-        <%= link_to "削除",dictionary_detail_path(@dictionary.id,d.id),method: :delete,class:"btn btn-sm btn-danger","data-confirm"=>"本当に削除しますか？" %>
       <% end %>
     </div>
   </div>
 </div>
 
-<%= link_to new_dictionary_detail_path,class:"btn btn-x btn-lignt rounded-circle shadow-sm shadow-none" do %>
-  <%= "+" %>
-<% end %>
