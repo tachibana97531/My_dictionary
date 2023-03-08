@@ -3,7 +3,7 @@
     <div class="col-md-4">
       <%= image_tag @dictionary.get_image(300,450),:size => "300x450",class:"dictionary-image" %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <dl>
         <dt>タイトル</dt><dd><%= @dictionary.title %></dd>
         <dt>概要</dt><dd><%= @dictionary.summery %></dd>
@@ -21,28 +21,31 @@
               ♡<%= @dictionary.favorites.count %> いいね
             <% end %>
           </p>
+           <%= link_to dictionary_comments_path(@dictionary.id),method: :get do %>
+          <p>コメント件数<%= @dictionary.comments.count %></p>
+        <% end %>
         </dl>
       <% end %>
-      <%= link_to "閲覧",dictionary_details_path(@dictionary.id),method: :get,class:"btn btn-sm btn-primary" %>
-      <%= link_to "編集",edit_dictionary_path(@dictionary.id),method: :get,class:"btn btn-sm btn-success" %>
-      <%= link_to "削除",dictionary_path(@dictionary.id),method: :delete,class:"btn btn-sm btn-danger" %>
-      <%= link_to "辞書一覧へ",dictionaries_path,method: :get,class:"btn btn-sm btn-primary" %>
-      <div>
-        <p>コメント件数<%= @dictionary.comments.count %></p>
-        <% @dictionary.comments.each do |comment| %>
-          <%= comment.user.last_name %>
-          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment_contents %>
-          <% if comment.user == current_user %>
-            <%= link_to "コメントを削除",dictionary_comment_path(comment.dictionary,comment),method: :delete,"data-confirm"=>"本当に削除しますか？",class:"btn btn-sm btn-danger" %>
-          <% end %>
-        <% end %>
-      </div>
-      <div>
+
+      <div class="border">
+        <p>コメントの作成</p>
         <%= form_with model:[@dictionary,@comment] do |f| %>
-          <%= f.text_area :comment_contents,placeholder:"コメントをここに" %>
-          <%= f.submit "送信する",class:"btn btn-sm btn-success" %>
+          <p><%= f.text_area :comment_contents,placeholder:"コメントをここに" %></p>
+          <p><%= f.submit "送信する",class:"btn btn-sm btn-success" %></p>
         <% end %>
       </div>
+
+    </div>
+    <div class="col-md-2">
+      <ul class="">
+        <li><%= link_to "辞書を読む",dictionary_details_path(@dictionary.id),method: :get %></li>
+        <li><%= link_to "辞書一覧へ",dictionaries_path,method: :get %></li>
+        <% if @dictionary.user_id == current_user.id %>
+          <li><%= link_to "辞書の編集",edit_dictionary_path(@dictionary.id),method: :get %></li>
+          <li><%= link_to "単語の編集",edit_dictionary_detail_path(:dictionary_id => @dictionary.id,:id => @dictionary.detail.id),method: :get %></li>
+          <li><%= link_to "辞書を削除",dictionary_path(@dictionary.id),method: :delete,"data-confirm"=>"本当に削除しますか？" %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

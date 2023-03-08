@@ -13,7 +13,9 @@
     </div>
     <div class="col-md-10">
       <% @dictionaries.each do |dictionary| %>
-      <%= image_tag dictionary.get_image(100,100),:size => "100,150" %>
+        <%= link_to dictionary_path(dictionary.id),method: :get do %>
+          <%= image_tag dictionary.get_image(100,100),:size => "100,150" %>
+        <% end %>
         <dl>
           <dt>タイトル</dt><dd><%= dictionary.title %></dd>
           <dt>タグ</dt><dd><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
@@ -38,7 +40,6 @@
           <% end %>
           </dd>
         </dl>
-        <%= link_to "詳細",dictionary_path(dictionary.id),method: :get,class:"btn btn-sm btn-primary" %>
       <% end %>
     </div>
   </div>

@@ -1,13 +1,17 @@
-<h1>プロフィール編集</h1>
-<%= form_with model:@user,url:user_path(@user.id),method: :patch,local:true do |f| %>
-  <dl>
-    <dt>名前</dt><dd><%= f.text_field:last_name,placeholder:"田中" %><%= f.text_field:first_name,placeholder:"太郎" %></dd>
-    <dt>ふりがな</dt><dd><%= f.text_field:last_name_kana,placeholder:"タナカ" %><%= f.text_field:first_name_kana,placeholder:"タロウ" %></dd>
-    <dt>自己紹介</dt><dd><%= f.text_area:production,placeholder:"自己紹介文を書いてみましょう(この欄は空白でも問題ありません)。" %></dd>
-    <dt>メールアドレス</dt><dd><%= f.text_field:email,placeholder:"tanaka@tarou.com" %></dd>
-    <dt>電話番号(ハイフンなし)</dt><dd><%= f.text_field:telephone_number,placeholder:"00000000000" %></dd>
-    <dt>郵便番号(ハイフンなし)</dt><dd><%= f.text_field:postal_code,placeholder:"0000000" %></dd>
-    <dt>住所</dt><dd><%= f.text_field:address,placeholder:"東京都渋谷区神山町〇-〇" %></dd>
-  </dl>
-  <%= f.submit "変更を保存",class:"btn btn-sm btn-success" %>
-<% end %>
+<div class="container-fluid max-container">
+  <%= form_with model:@user,url:user_path(@user.id),method: :patch,local:true,class:"row" do |f| %>
+    <h1 class="col-md-12 text-center">プロフィール編集</h1>
+    <div class="col-md-12">
+      <dl>
+        <dt>名前</dt><dd><%= f.label :"(姓)" %>&emsp;&emsp;<%= f.text_field:last_name,placeholder:"田中",class:"name-box" %><%= f.label :"(名)" %>&emsp;&emsp;<%= f.text_field:first_name,placeholder:"太郎",class:"name-box" %></dd>
+        <dt>ふりがな</dt><dd><%= f.label :"(せい)" %>&emsp;<%= f.text_field:last_name_kana,placeholder:"タナカ",class:"name-box" %><%= f.label :"(めい)" %>&emsp;<%= f.text_field:first_name_kana,placeholder:"タロウ",class:"name-box" %></dd>
+        <dt>自己紹介</dt><dd><%= f.text_area:production,placeholder:"自己紹介文を書いてみましょう(この欄は空白でも問題ありません)。",class:"long-box" %></dd>
+        <dt>メールアドレス</dt><dd><%= f.text_field:email,placeholder:"tanaka@tarou.com",class:"long-box" %></dd>
+        <dt>電話番号(ハイフンなし)</dt><dd><%= f.text_field:telephone_number,placeholder:"00000000000",class:"long-box" %></dd>
+        <dt>郵便番号(ハイフンなし)</dt><dd><%= f.text_field:postal_code,placeholder:"0000000",class:"long-box" %></dd>
+        <dt>住所</dt><dd><%= f.text_field:address,placeholder:"東京都渋谷区神山町〇-〇",class:"long-box" %></dd>
+      </dl>
+      <%= f.submit "変更を保存",class:"btn btn-sm btn-success" %>
+    </div>
+  <% end %>
+</div>
