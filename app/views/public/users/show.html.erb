@@ -1,7 +1,7 @@
 <div class="container-fluid max-conteiner">
   <div class="row">
     <h1 class="col-md-12 text-center">プロフィール</h1>
-    <div class="col-md-12">
+    <div class="col-md-8">
       <dl>
         <dt>名前<dt><dd>(姓)<%= @user.last_name %>(名)<%= @user.first_name %></dd>
         <dt>ふりがな</dt><dd>(せい)<%= @user.last_name_kana %>(めい)<%= @user.first_name_kana %></dd>
@@ -12,13 +12,18 @@
         <dt>住所</dt><dd><%= @user.address %></dd>
       </dl>
       <%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>
+    </div>
+    <div class="col-md-4">
       <% if @user.id == current_user.id %>
-      <h1>いいねした辞書一覧</h1>
-        <% @favorite_dictionaries.each do |dictionary| %>
-          <%= dictionary.title %>
-        <% end %>
+      <h3>いいねした辞書一覧</h3>
+        <ul>
+           <% @favorite_dictionaries.each do |dictionary| %>
+              <%= link_to dictionary_path(dictionary.id),method: :get do %>
+               <li><%= dictionary.title %></li>
+              <% end %>
+           <% end %>
+        </ul>
       <% end %>
-      <%= link_to "いいねした辞書一覧",favorites_user_path(@user.id),class:"col-md-12" %>
     </div>
   </div>
 </div>
