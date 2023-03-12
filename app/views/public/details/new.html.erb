@@ -12,10 +12,10 @@
       <% end %>
     </div>
     <div class="col-md-12">
-      <dl>
-        <dt>単語</dt><dd><%= f.text_field :word,placeholder:"単語を入力" %></dd>
-        <dt>読み方</dt><dd><%= f.text_field :read,placeholder:"読み方を入力" %></dd>
-        <dt>説明</dt><dd><%= f.text_area :explanation,placeholder:"説明を入力",size:"80x10" %></dd>
+      <dl class="dl">
+        <dt class="dt">単語</dt><dd class="dd"><%= f.text_field :word,placeholder:"単語を入力" %></dd>
+        <dt class="dt">読み方</dt><dd class="dd"><%= f.text_field :read,placeholder:"読み方を入力" %></dd>
+        <dt class="dt">説明</dt><dd class="dd"><%= f.text_area :explanation,placeholder:"説明を入力",size:"80x10" %></dd>
       </dl>
     </div>
     <%= f.submit "作成",class:"btn btn-sm btn-success" %>

@@ -11,35 +11,39 @@
     <div class="col-md-2">
       <%= render partial: "public/dictionaries/tag",locals: {tags:@tags} %>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 collection">
       <% @dictionaries.each do |dictionary| %>
-        <%= link_to dictionary_path(dictionary.id),method: :get do %>
-          <%= image_tag dictionary.get_image(100,100),:size => "100,150" %>
-        <% end %>
-        <dl>
-          <dt>タイトル</dt><dd><%= dictionary.title %></dd>
-          <dt>タグ</dt><dd><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
-          <dt>概要</dt><dd><%= dictionary.summery %></dd>
-          <dt>投稿ステータス</dt><dd><%= dictionary.post_status_i18n %></dd>
-          <%= link_to dictionary_comments_path(dictionary.id) do %>
-          <dt><%= "#{dictionary.comments.count}コメント" %></dt>
-          <% end %>
-          <dd>
-          <% if dictionary.favorited_by?(current_user) %>
-          <p>
-            <%= link_to dictionary_favorites_path(dictionary.id),method: :delete do |f| %>
-              ♥<%= dictionary.favorites.count %> いいね
+        <div class="dictionary-box">
+          <div class="image-box">
+            <%= link_to dictionary_path(dictionary.id),method: :get do %>
+              <%= image_tag dictionary.get_image(100,100),class:"collection-image" %>
             <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to dictionary_favorites_path(dictionary.id),method: :post do |f| %>
-              ♡<%= dictionary.favorites.count %> いいね
+          </div>
+          <div class="word-box">
+            <dl>
+            <dt>タイトル</dt><dd><%= dictionary.title %></dd>
+            <dt>タグ</dt><dd><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
+            <dt>概要</dt><dd><%= dictionary.summery %></dd>
+            <dt>投稿ステータス</dt><dd><%= dictionary.post_status_i18n %></dd>
+          </dl>
+            <%= link_to dictionary_comments_path(dictionary.id) do %>
+              <p><%= "#{dictionary.comments.count}コメント" %></p>
             <% end %>
-          </p>
-          <% end %>
-          </dd>
-        </dl>
+             <% if dictionary.favorited_by?(current_user) %>
+            <p>
+              <%= link_to dictionary_favorites_path(dictionary.id),method: :delete do |f| %>
+                ♥<%= dictionary.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to dictionary_favorites_path(dictionary.id),method: :post do |f| %>
+                ♡<%= dictionary.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

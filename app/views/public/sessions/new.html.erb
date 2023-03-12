@@ -2,15 +2,15 @@
   <%= form_for(resource, as: resource_name, url: session_path(resource_name),class:"row") do |f| %>
     <h2 class="col-md-12 text-center">ログイン</h2>
     <div class="col-md-12">
-      <dl>
+      <dl class="dl">
         <div class="field">
-          <dt><%= f.label :email %></dt>
-          <dd><%= f.email_field :email, autofocus: true, autocomplete: "email",class:"long-box" %></dd>
+          <dt class="dt"><%= f.label :email %></dt>
+          <dd class="dd"><%= f.email_field :email, autofocus: true, autocomplete: "email",class:"long-box" %></dd>
         </div>
 
         <div class="field">
-          <dt><%= f.label :password %></dt>
-          <dd><%= f.password_field :password, autocomplete: "current-password",class:"long-box" %></dd>
+          <dt class="dt"><%= f.label :password %></dt>
+          <dd class="dd"><%= f.password_field :password, autocomplete: "current-password",class:"long-box" %></dd>
         </div>
 
         <div class="actions col-md-12 text-center">

@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     @comment.dictionary_id = @dictionary.id
     if @comment.save
        flash[:notice] = "コメントを作成しました。"
-       redirect_to dictionary_path(@dictionary)
+       redirect_to dictionary_comments_path(@dictionary)
     else
        render :index
     end

@@ -15,12 +15,12 @@
         <%= dictionary.file_field :image %>
       </div>
       <div class="col-md-8">
-        <dl>
-          <dt>タイトル</dt><dd><%= dictionary.text_field :title %></dd>
-          <dt>タグ</dt><dd><%= dictionary.text_field :tag_name,value:@tag_list %></dd>
-          <dt>概要</dt><dd><%= dictionary.text_area :summery %></dd>
-          <dt>投稿ステータス</dt>
-          <dd>
+        <dl class="dl">
+          <dt class="dt">タイトル</dt><dd class="dd"><%= dictionary.text_field :title %></dd>
+          <dt class="dt">タグ</dt><dd class="dd"><%= dictionary.text_field :tag_name,value:@tag_list %></dd>
+          <dt class="dt">概要</dt><dd class="dd"><%= dictionary.text_area :summery %></dd>
+          <dt class="dt">投稿ステータス</dt>
+          <dd class="dd">
             <%= dictionary.radio_button :post_status,Dictionary.post_statuses.key(1) %>
             <%= dictionary.label :post_status_opening,Dictionary.post_statuses_i18n[:opening] %>
             <%= dictionary.radio_button :post_status,Dictionary.post_statuses.key(0) %>

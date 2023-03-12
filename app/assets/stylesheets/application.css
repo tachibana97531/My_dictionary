@@ -49,18 +49,18 @@ dl dt {
   margin-right:auto;
 }
 
-dl {
+.dl {
   padding:30px 50px;
 }
 
- dl dt{
+ .dl .dt{
   width: 200px;
   padding:10px 0;
   float:left;
   clear:both;
 }
 
- dl dd{
+ .dl .dd{
   padding:10px 0;
 }
 
@@ -76,6 +76,24 @@ ul {
   list-style:none;
 }
 
+.image-box {
+  display:inline-block;
+  vertical-align:top;
+}
 
+.collection-image {
+  width:100%;
+  height:100%;
+}
 
+.word-box {
+  display:inline-block;
+}
 
+.collection {
+  display:flex;
+}
+
+.dictionary-box{
+  width:50%;
+}

@@ -51,11 +51,22 @@ class Public::DetailsController < ApplicationController
     redirect_to dictionary_details_path(@dictionary.id)
   end
 
+  def counter
+    @dictionary = Dictionary.find(params[:dictionary_id])
+    @detail = Detail.find(params[:detail_id])
+    @detail.update(counter_params)
+    redirect_to dictionary_detail_path(@dictionary,@detail)
+  end
+
 
   private
 
   def detail_params
     params.require(:detail).permit(:word,:read,:explanation)
+  end
+
+  def counter_params
+    params.require(:detail).permit(:counter)
   end
 
 end

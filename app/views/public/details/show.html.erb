@@ -1,11 +1,19 @@
 <div class="container-fluid max-container">
   <div class="row">
-    <div class="col-md-12">
-      <dl>
-        <dt><p>単語</p></dt><dd><%= @detail.word %></dd>
-        <dt><p>読み方</p></dt><dd><%= @detail.read %></dd>
-        <dt><p>説明</p></dt><dd><%= @detail.explanation %></dd>
+    <div class="col-md-9">
+      <dl class="dl">
+        <dt class="dt"><p>単語</p></dt><dd class="dd"><p><%= @detail.word %></p></dd>
+        <dt class="dt"><p>読み方</p></dt><dd class="dd"><p><%= @detail.read %></p></dd>
+        <dt class="dt"><p>説明</p></dt><dd class="dd"><p class="explanation"><%= @detail.explanation %></p></dd>
       </dl>
+    </div>
+    <div class="col-md-3">
+      <button class="button-hide">説明の表示・非表示</button>
+      <script>
+        $('.button-hide').click(function() {
+            $('.explanation').toggle();
+        })
+      </script>
       <% if @dictionary.user_id == current_user.id %>
         <%= link_to "編集",edit_dictionary_detail_path(@dictionary.id,@detail.id),method: :get,class:"btn btn-sm btn-success" %>
         <%= link_to "削除",dictionary_detail_path(@dictionary.id,@detail.id),method: :delete,class:"btn btn-sm btn-danger","data-confirm"=>"本当に削除しますか？" %>

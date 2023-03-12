@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     resources:dictionaries do
       resource :favorites
       resources:comments,only:[:create,:index,:destroy]
-      resources:details
+      resources:details do
+      patch 'counter'
+      end
     end
   end
 

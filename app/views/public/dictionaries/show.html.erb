@@ -4,11 +4,11 @@
       <%= image_tag @dictionary.get_image(300,450),:size => "300x450",class:"dictionary-image" %>
     </div>
     <div class="col-md-6">
-      <dl>
-        <dt>タイトル</dt><dd><%= @dictionary.title %></dd>
-        <dt>概要</dt><dd><%= @dictionary.summery %></dd>
-        <dt>タグ</dt><dd><%= @tag_list %></dd>
-        <dt>投稿ステータス</dt><dd><%= @dictionary.post_status_i18n %></dd>
+      <dl class="dl">
+        <dt class="dt">タイトル</dt><dd class="dd"><%= @dictionary.title %></dd>
+        <dt class="dt">概要</dt><dd class="dd"><%= @dictionary.summery %></dd>
+        <dt class="dt">タグ</dt><dd class="dd"><%= @tag_list %></dd>
+        <dt class="dt">投稿ステータス</dt><dd class="dd"><%= @dictionary.post_status_i18n %></dd>
         <% if @dictionary.favorited_by?(current_user) %>
           <p>
             <%= link_to dictionary_favorites_path(@dictionary),method: :delete do |f| %>

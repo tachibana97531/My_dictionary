@@ -16,12 +16,12 @@
       <%= f.file_field :image,accept:"image/*" %>
     </div>
     <div class="col-md-8">
-      <dl>
-        <dt><%= f.label :"タイトル" %></dt><dd><%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true %></dd>
-        <dt><%= f.label :"タグ" %></dt><dd><%= f.text_field :tag_name,value:@tag_list %></dd>
-        <dt><%= f.label :"概要" %></dt><dd><%= f.text_area :summery,placeholder:"概要を入力" %></dd>
-        <dt><%= f.label :"公開範囲" %></dt>
-        <dd>
+      <dl class="dl">
+        <dt class="dt"><%= f.label :"タイトル" %></dt><dd class="dd"><%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true %></dd>
+        <dt class="dt"><%= f.label :"タグ" %></dt><dd class="dd"><%= f.text_field :tag_name,value:@tag_list %></dd>
+        <dt class="dt"><%= f.label :"概要" %></dt><dd class="dd"><%= f.text_area :summery,placeholder:"概要を入力" %></dd>
+        <dt class="dt"><%= f.label :"公開範囲" %></dt>
+        <dd class="dd">
           <%= f.label :post_status_opening,Dictionary.post_statuses_i18n[:opening] %>
           <%= f.radio_button :post_status,Dictionary.post_statuses.key(1) %>
           <%= f.label :post_status_closing,Dictionary.post_statuses_i18n[:closing] %>
