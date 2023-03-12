@@ -1,15 +1,43 @@
+<div class="container-fluid max-container">
+   <div class="row">
+      <h1 class="col-md-12 text-center">ユーザー一覧</h1>
+      <div class="col-md-12">
+            <table border="5" class="mx-auto">
+               <thead>
+                  <tr>
+                     <th>ユーザーID</th>
+                     <th>ユーザー名(ふりがな)</th>
+                     <th>メールアドレス</th>
+                     <th>退会ステータス</th>
+                     <th>投稿日時</th>
+                  </tr>
+               </thead>
+               <% @users.each do |user| %>
+               <tbody>
+                  <tr>
+                     <td><%= user.id %></td>
+                     <td>
+                        <%= link_to admin_user_path(user.id) do %>
+                          <%= user.last_name %>
+                          <%= user.first_name %>
+                          (<%= user.last_name_kana %>
+                          <%= user.first_name_kana %>)
+                        <% end %>
+                     </td>
+                     <td><%= user.email %></td>
+                     <td>
+                        <% if user.is_deleted == false %>
+                          <%= "有効" %>
+                        <% else %>
+                          <%= "退会" %>
+                        <% end %>
+                     </td>
+                     <td><%= user.created_at.strftime("%Y/%m/%d") %></td>
+                  </tr>
+               </tbody>
+               <% end %>
+            </table>
+      </div>
+   </div>
+</div>
 <h1>ユーザー一覧</h1>
-<% @users.each do |user| %>
-   <%= user.id %>
-   <%= link_to admin_user_path(user.id) do %>
-     <%= user.last_name %>
-     <%= user.first_name %>
-   <% end %>
-   <%= user.email %>
-   <% if user.is_deleted == false %>
-     <%= "有効" %>
-   <% else %>
-     <%= "退会" %>
-   <% end %>
-   <%= user.created_at.strftime("%Y/%m/%d") %>
-<% end %>

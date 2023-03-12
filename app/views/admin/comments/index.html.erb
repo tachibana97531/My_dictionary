@@ -1,4 +1,37 @@
-<h1>コメント一覧</h1>
-<% @comments.each do |comment| %>
-  <%= comment.comment_contents %>
-<% end %>
+<div class="container-fluid max-container">
+  <div class="row">
+    <h1 class="col-md-12 text-center">コメント一覧</h1>
+    <div class="col-md-12">
+      <table>
+        <thead>
+          <tr>
+            <th>コメント者</th>
+            <th>コメント</th>
+            <th>コメント日時</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @comments.each do |comment| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= comment.user.last_name %><%= comment.user.first_name %>
+            </td>
+            <td>
+              <%= comment.comment_contents %>
+            </td>
+            <td>
+              <%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+            </td>
+            <td>
+              <%= link_to "削除",admin_comment_path(comment.id),method: :delete,"data-confirm"=>"本当にさくじょしますか？"  %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+
