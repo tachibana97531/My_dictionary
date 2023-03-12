@@ -19,7 +19,7 @@ class Public::DetailsController < ApplicationController
 
   def index
     @dictionary = Dictionary.find(params[:dictionary_id])
-    @details = Detail.all
+    @details = @dictionary.details
   end
 
   def show

@@ -21,7 +21,12 @@
           </div>
           <div class="word-box">
             <dl>
-            <dt>タイトル</dt><dd><%= dictionary.title %></dd>
+            <dt>タイトル</dt>
+            <dd>
+              <%= link_to dictionary_path(dictionary.id),method: :get do %>
+                <%= dictionary.title %>
+              <% end %>
+            </dd>
             <dt>タグ</dt><dd><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
             <dt>概要</dt><dd><%= dictionary.summery %></dd>
             <dt>投稿ステータス</dt><dd><%= dictionary.post_status_i18n %></dd>
