@@ -64,6 +64,14 @@ dl dt {
   padding:10px 0;
 }
 
+.dd{
+  min-height:44px;
+}
+
+.index-dd{
+  min-height:24px;
+}
+
 .long-box {
   width:80%;
 }

@@ -32,7 +32,7 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def favorites
+  def favorite_user_dictionary
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:dictionary_id)
     @favorite_dictionaries = Dictionary.find(favorites)

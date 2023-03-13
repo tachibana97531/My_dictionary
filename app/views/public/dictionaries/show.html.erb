@@ -11,13 +11,13 @@
         <dt class="dt">投稿ステータス</dt><dd class="dd"><%= @dictionary.post_status_i18n %></dd>
         <% if @dictionary.favorited_by?(current_user) %>
           <p>
-            <%= link_to dictionary_favorites_path(@dictionary),method: :delete do |f| %>
+            <%= link_to dictionary_favorites_path(@dictionary.id),method: :delete do |f| %>
               ♥<%= @dictionary.favorites.count %> いいね
             <% end %>
           </p>
         <% else %>
           <p>
-            <%= link_to dictionary_favorites_path(@dictionary),method: :post do |f| %>
+            <%= link_to dictionary_favorites_path(@dictionary.id),method: :post do |f| %>
               ♡<%= @dictionary.favorites.count %> いいね
             <% end %>
           </p>

@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :address,presence:true
   validates :encrypted_password,presence:true
 
-  def favorites
+  def favorite_user_dictionary
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:dictionary_id)
     @favorite_dictionaries = Dictionary.find(favorites)
