@@ -16,9 +16,9 @@
       </div>
       <div class="col-md-8">
         <dl class="dl">
-          <dt class="dt">タイトル</dt><dd class="dd"><%= dictionary.text_field :title %></dd>
-          <dt class="dt">タグ</dt><dd class="dd"><%= dictionary.text_field :tag_name,value:@tag_list %></dd>
-          <dt class="dt">概要</dt><dd class="dd"><%= dictionary.text_area :summery %></dd>
+          <dt class="dt">タイトル</dt><dd class="dd"><%= dictionary.text_field :title,size:"100x1" %></dd>
+          <dt class="dt">タグ</dt><dd class="dd"><%= dictionary.text_field :tag_name,value:@tag_list,size:"100x1" %></dd>
+          <dt class="dt">概要</dt><dd class="dd"><%= dictionary.text_area :summery,size:"100x12" %></dd>
           <dt class="dt">投稿ステータス</dt>
           <dd class="dd">
             <%= dictionary.radio_button :post_status,Dictionary.post_statuses.key(1) %>
