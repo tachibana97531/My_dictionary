@@ -22,6 +22,7 @@
         <dt class="dt">住所</dt><dd class="dd"><%= f.text_field:address,placeholder:"東京都渋谷区神山町〇-〇",class:"long-box" %></dd>
       </dl>
       <%= f.submit "変更を保存",class:"btn btn-sm btn-success" %>
+      <%= link_to "退会する",users_unsubscribe_path,method: :get,class:"btn btn-sm btn-danger" %>
     </div>
   <% end %>
 </div>

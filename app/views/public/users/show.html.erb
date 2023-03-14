@@ -11,11 +11,23 @@
         <dt class="dt">郵便番号</dt><dd class="dd"><%= @user.postal_code %></dd>
         <dt class="dt">住所</dt><dd class="dd"><%= @user.address %></dd>
       </dl>
-      <%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>
-    </div>
-    <div class="col-md-4">
       <% if @user.id == current_user.id %>
-      <h3>いいねした辞書一覧</h3>
+        <%= link_to "プロフィールを編集",edit_user_path,method: :get,class:"btn btn-sm btn-success" %>
+      <% end %>
+    </div>
+    <div class="col-md-2">
+      <h3>作成した辞書</h3>
+        <ul>
+          <% @dictionaries.each do |dictionary| %>
+            <%= link_to dictionary_path(dictionary.id),method: :get do %>
+              <li><%= dictionary.title %></li>
+            <% end %>
+          <% end %>
+        </ul>
+    </div>
+    <div class="col-md-2">
+      <% if @user.id == current_user.id %>
+      <h3>いいねした辞書</h3>
         <ul>
            <% @favorite_dictionaries.each do |dictionary| %>
               <%= link_to dictionary_path(dictionary.id),method: :get do %>

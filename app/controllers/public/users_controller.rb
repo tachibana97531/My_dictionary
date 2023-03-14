@@ -5,6 +5,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @dictionaries = @user.dictionaries
     favorites = Favorite.where(user_id: @user.id).pluck(:dictionary_id)
     @favorite_dictionaries = Dictionary.find(favorites)
   end

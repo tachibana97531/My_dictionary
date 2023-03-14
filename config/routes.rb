@@ -18,13 +18,13 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
 
   scope module:'public' do
+    get 'users/unsubscribe'
+    get 'users/withdraw'
     resources:users,only:[:index,:show,:edit,:update] do
       member do
         get :favorites
       end
     end
-    get 'users/unsubscribe'
-    get 'users/withdraw'
   end
   scope module:'public' do
     resources:dictionaries do
