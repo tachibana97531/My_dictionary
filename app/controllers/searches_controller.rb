@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
   def search
-    @dictionaries = Dictionary.looks(params[:word])
+    @dictionaries_open = Dictionary.where(post_status:true)
+    @dictionaries = @dictionaries_open.looks(params[:word])
   end
 end

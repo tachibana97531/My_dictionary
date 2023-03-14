@@ -20,7 +20,7 @@
         <ul>
           <% @dictionaries.each do |dictionary| %>
             <%= link_to dictionary_path(dictionary.id),method: :get do %>
-              <li><%= dictionary.title %></li>
+              <li><%= dictionary.title %>(<%= dictionary.post_status_i18n %>)</li>
             <% end %>
           <% end %>
         </ul>

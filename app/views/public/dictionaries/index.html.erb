@@ -21,22 +21,21 @@
           </div>
           <div class="word-box">
             <dl>
-            <dt>タイトル</dt>
-            <dd class="index-dd">
-              <%= link_to dictionary_path(dictionary.id),method: :get do %>
-                <%= dictionary.title %>
-              <% end %>
-            </dd>
-            <dt>タグ</dt><dd class="index-dd"><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
-            <dt>概要</dt><dd class="index-dd"><%= dictionary.summery %></dd>
-            <dt>投稿ステータス</dt><dd class="index-dd"><%= dictionary.post_status_i18n %></dd>
-            <dt>投稿者</dt>
-            <dd>
-              <%= link_to user_path(dictionary.user.id),method: :get do %>
-                <%= dictionary.user.last_name %><%= dictionary.user.first_name %>
-              <% end %>
-            </dd>
-          </dl>
+              <dt>タイトル</dt>
+              <dd class="index-dd">
+                <%= link_to dictionary_path(dictionary.id),method: :get do %>
+                  <%= dictionary.title %>
+                <% end %>
+              </dd>
+              <dt>タグ</dt><dd class="index-dd"><%= dictionary.tags.map(&:tag_name).join('、') %></dd>
+              <dt>概要</dt><dd class="index-dd"><%= dictionary.summery %></dd>
+              <dt>投稿者</dt>
+              <dd class="index-dd">
+                <%= link_to user_path(dictionary.user.id),method: :get do %>
+                  <%= dictionary.user.last_name %><%= dictionary.user.first_name %>
+                <% end %>
+              </dd>
+            </dl>
             <%= link_to dictionary_comments_path(dictionary.id) do %>
               <p><%= "#{dictionary.comments.count}コメント" %></p>
             <% end %>
