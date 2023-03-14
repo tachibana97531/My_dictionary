@@ -11,11 +11,11 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     if @user.update(user_params)
       redirect_to user_path(@user.id)
     else
@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     @user.update(is_deleted:true)
     reset_session
     redirect_to root_path
@@ -43,6 +43,6 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:production,:email,:telephone_number,:postal_code,:address)
+    params.require(:user).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:production,:email,:telephone_number,:postal_code,:address,:is_deleted)
   end
 end
