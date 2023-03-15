@@ -3,5 +3,4 @@ class Detail < ApplicationRecord
   has_many:keys,dependent: :destroy
 
   validates :word,presence:true
-  validates :explanation,presence:true
 end
