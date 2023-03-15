@@ -13,8 +13,12 @@
  *= require_tree .
  *= require_self
  */
-.dictinary-image {
-  object-fit:cover
+
+
+.dictionary-image {
+   height:450px;
+   width:300px;
+   object-fit:cover;
 }
 
 dl dt {
@@ -90,8 +94,8 @@ ul {
 }
 
 .collection-image {
-  width:100%;
-  height:100%;
+  width:90px;
+  height:100px;
 }
 
 .word-box {
