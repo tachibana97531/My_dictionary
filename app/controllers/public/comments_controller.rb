@@ -15,6 +15,7 @@ class Public::CommentsController < ApplicationController
   def index
     @dictionary = Dictionary.find(params[:dictionary_id])
     @comments = @dictionary.comments
+    @comment = Comment.new
   end
 
   def destroy

@@ -1,7 +1,11 @@
 <div class="container-fluid max-container">
   <div class="row">
-    <div class="col-md-12" >
-        <h1 class="text-center"><%= @dictionary.title %>に対するコメント(<%= @dictionary.comments.count %>件)</h1>
+    <div class="col-md-8">
+        <h1 class="text-center">
+          <%= link_to dictionary_path(@dictionary.id),method: :get do %>
+            <%= @dictionary.title %>
+          <% end %>
+          に対するコメント(<%= @dictionary.comments.count %>件)</h1>
         <% @comments.each do |comment| %>
           <ul>
             <li>
@@ -14,6 +18,13 @@
               <% end %>
             </li>
           </ul>
+        <% end %>
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-center">コメントの作成</h1>
+        <%= form_with model:[@dictionary,@comment] do |f| %>
+          <p><%= f.text_area :comment_contents,placeholder:"コメントをここに",size:"50x10" %></p>
+          <p><%= f.submit "送信する",class:"btn btn-sm btn-success" %></p>
         <% end %>
     </div>
   </div>
