@@ -72,4 +72,8 @@ class Public::DictionariesController < ApplicationController
     params.require(:dictionary).permit(:image,:title,:summery,:post_status,:dictionary_id)
   end
 
+  def comment_params
+    params.require(:comment).permit(:comment_contents)
+  end
+
 end

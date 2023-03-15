@@ -28,8 +28,8 @@
         </dl>
       <div class="border">
         <p>コメントの作成</p>
-        <%= form_with model:[@dictionary,@comment] do |f| %>
-          <p><%= f.text_area :comment_contents,placeholder:"コメントをここに",size:"100x10" %></p>
+        <%= form_with model:[@dictionary,@comment],url:dictionary_comments_path(@dictionary.id),method: :post,local:true do |f| %>
+          <p><%= f.text_area :comment_contents,rows:"5",placeholder:"コメントをここに",size:"100x10" %></p>
           <p><%= f.submit "送信する",class:"btn btn-sm btn-success" %></p>
         <% end %>
       </div>

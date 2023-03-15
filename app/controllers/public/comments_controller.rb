@@ -8,7 +8,11 @@ class Public::CommentsController < ApplicationController
        flash[:notice] = "コメントを作成しました。"
        redirect_to dictionary_comments_path(@dictionary)
     else
-       render :index
+      flash[:notice] = "コメントを書いてください。"
+      @dictionary = Dictionary.find(params[:dictionary_id])
+      @comments = @dictionary.comments
+      @comment = Comment.new
+      render :index
     end
   end
 
@@ -20,7 +24,7 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to dictionary_path(params[:dictionary_id])
+    redirect_to dictionary_comments_path(params[:dictionary_id])
   end
 
   private
