@@ -22,10 +22,10 @@
         <dt class="dt"><%= f.label :"概要" %></dt><dd class="dd"><%= f.text_area :summery,placeholder:"概要を入力",size:"100x12" %></dd>
         <dt class="dt"><%= f.label :"公開範囲" %></dt>
         <dd class="dd">
-          <%= f.label :post_status_opening,Dictionary.post_statuses_i18n[:opening] %>
           <%= f.radio_button :post_status,Dictionary.post_statuses.key(1) %>
-          <%= f.label :post_status_closing,Dictionary.post_statuses_i18n[:closing] %>
+          <%= f.label :post_status,Dictionary.post_statuses_i18n[:opening],value: Dictionary.post_statuses.key(1) %>
           <%= f.radio_button :post_status,Dictionary.post_statuses.key(0) %>
+          <%= f.label :post_status,Dictionary.post_statuses_i18n[:closing],value: Dictionary.post_statuses.key(0) %>
         </dd>
       </dl>
       <%= f.submit "辞書を作成",class:"btn btn-sm btn-success" %>
