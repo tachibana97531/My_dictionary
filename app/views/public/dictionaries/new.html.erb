@@ -18,7 +18,7 @@
     <div class="col-md-8">
       <dl class="dl">
         <dt class="dt"><%= f.label :"タイトル" %></dt><dd class="dd"><%= f.text_field :title,placeholder:"タイトルを入力",autofocus:true,size:"100x1" %></dd>
-        <dt class="dt"><%= f.label :"タグ" %></dt><dd class="dd"><%= f.text_field :tag_name,value:@tag_list,size:"100x1" %></dd>
+        <dt class="dt"><%= f.label :"タグ" %></dt><dd class="dd"><%= f.text_field :tag_name,placeholder:"、で区切るとタグを複数入力できます。",value:@tag_list,size:"100x1" %></dd>
         <dt class="dt"><%= f.label :"概要" %></dt><dd class="dd"><%= f.text_area :summery,placeholder:"概要を入力",size:"100x12" %></dd>
         <dt class="dt"><%= f.label :"公開範囲" %></dt>
         <dd class="dd">
