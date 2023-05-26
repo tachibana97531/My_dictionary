@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:top]
+  before_action :is_matching_login_user , only: [:edit]
   def index
   end
 
@@ -44,6 +45,13 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:production,:email,:telephone_number,:postal_code,:address,:is_deleted)
+  end
+
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to root_path
+    end
   end
 
 end

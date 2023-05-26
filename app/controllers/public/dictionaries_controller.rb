@@ -1,5 +1,6 @@
 class Public::DictionariesController < ApplicationController
   before_action :authenticate_user!, except: [:top]
+  before_action :is_matching_login_user, only: [:edit]
   def new
     @dictionary = Dictionary.new
     @tag_list = @dictionary.tags.pluck(:tag_name).join('、')
@@ -74,6 +75,13 @@ class Public::DictionariesController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment_contents)
+  end
+
+  def is_matching_login_user
+    dictionary = Dictionary.find(params[:id])
+    unless dictionary.user.id == current_user.id
+      redirect_to root_path
+    end
   end
 
 end
