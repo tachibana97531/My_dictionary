@@ -19,13 +19,13 @@ class Public::DictionariesController < ApplicationController
   end
 
   def index
-    @dictionaries_open = Dictionary.where(post_status:true)
-    @dictionaries = @dictionaries_open.page(params[:page]).per(8)
+    dictionaries_open = Dictionary.where(post_status:true)
+    @dictionaries = dictionaries_open.page(params[:page]).per(8)
     @tags = Tag.all
     if params[:tag_id].present?
-      @tag = Tag.find(params[:tag_id])
-      @dictionaries_tag = @tag.dictionaries.where(post_status:true)
-      @dictionaries = @dictionaries_tag.page(params[:page]).per(8)
+      tag = Tag.find(params[:tag_id])
+      dictionaries_tag = tag.dictionaries.where(post_status:true)
+      @dictionaries = dictionaries_tag.page(params[:page]).per(8)
       @tag_f = Tag.find(params[:tag_id])
     end
   end
